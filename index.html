@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Preaching Schedule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#252629; --muted:#777a80; --line:#e7e8eb; --canvas:#f7f7f8; --surface:#fff;
+  --head:#f1f1f3; --stripe:#eeeef1; --week:#f0f1f3; --week-ink:#6b7480;
+  --accent:#3e6246; --accent-soft:#e9f0ea; --accent-ink:#36563d;
+  --heading-font:Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ink:#e8e6e1; --muted:#b3b8c0; --line:#424a55; --canvas:#191c20; --surface:#20242a;
+    --head:#272c33; --stripe:#252a31; --week:#303640; --week-ink:#b3b8c0;
+    --accent:#b8c9da; --accent-soft:#3c4857; --accent-ink:#e8e6e1;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink);font:14px/1.45 var(--body-font)}
+.wrap{max-width:960px;margin:0 auto;padding:32px 16px 56px}
+h1{font:600 28px var(--heading-font);margin:0 0 4px}
+#updated{margin:0;color:var(--muted);font-size:13px}
+.actions{margin:16px 0 18px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:500 13px var(--body-font);color:var(--accent-ink);background:var(--accent-soft);
+  border:1px solid transparent;border-radius:7px;padding:7px 13px;text-decoration:none;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.table-wrap{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--surface)}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:13px}
+thead th{background:var(--head);color:var(--muted);font-weight:500;padding:9px 10px}
+td{padding:9px 10px;border-top:1px solid var(--line);vertical-align:middle}
+tbody tr.occ:nth-of-type(even) td{background:var(--stripe)}
+tr.week td{background:var(--week);color:var(--week-ink);font-size:11px;font-weight:500;padding:6px 10px}
+tr.week span{margin-left:14px;font-weight:400}
+td.date{white-space:nowrap;font-family:var(--heading-font);font-weight:500}
+td.date small{display:block;color:var(--muted);font:400 11px var(--body-font)}
+td .t{font-weight:600}
+td small{display:block;color:var(--muted);margin-top:2px}
+td .series{color:var(--accent-ink)}
+td.preacher{font-weight:500;white-space:nowrap}
+tr.occ.next td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+tr.occ.next td{background:var(--accent-soft)!important}
+.pill{display:inline-block;font:600 10px var(--heading-font);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent-ink);background:var(--accent-soft);border-radius:999px;padding:2px 8px;margin-left:6px}
+tr.occ.next .pill{background:var(--surface)}
+.guest{color:var(--muted);font-weight:400}
+details.past{margin-top:22px}
+details.past summary{cursor:pointer;color:var(--muted);margin-bottom:10px}
+details.past .table-wrap{opacity:.8}
+.empty{padding:28px;text-align:center;color:var(--muted)}
+footer{margin-top:36px;font-size:12px;color:var(--muted);text-align:center}
+@media (max-width:640px){
+  thead{display:none}
+  table,tbody,tr,td{display:block;width:100%}
+  tr.occ{padding:10px;border-top:1px solid var(--line)}
+  td{border:0;padding:2px 0;background:transparent!important}
+  td.date small{display:inline;margin-left:8px}
+  tr.week td{padding:6px 10px}
+  tr.occ.next td:first-child{box-shadow:none}
+  tr.occ.next{box-shadow:inset 3px 0 0 var(--accent);background:var(--accent-soft)}
+  tr.occ:nth-of-type(even){background:var(--stripe)}
+}
+@media print{.actions{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Preaching Schedule</h1>
+  <p id="updated"></p>
+  <div class="actions">
+    <a class="btn" href="schedule.ics">Subscribe in my calendar</a>
+    <button class="btn" onclick="window.print()">Print</button>
+  </div>
+  <main id="app"><div class="empty">Loading…</div></main>
+  <footer>Schedule is maintained by the preacher and may change.</footer>
+</div>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const parse = s => new Date(s + "T12:00:00");
+const fmt = (d, o) => d.toLocaleDateString(undefined, o);
+const iso = d => d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+// Sunday that starts the week containing date d (matches the app's Sunday-first schedule weeks).
+const weekStart = d => { const w = new Date(d); w.setDate(w.getDate() - w.getDay()); return iso(w); };
+
+function occRow(o, isNext){
+  const d = parse(o.date);
+  const title = o.title ? esc(o.title) : "<span class='guest'>Title to be announced</span>";
+  const sub = [o.passage ? esc(o.passage) : "", o.series ? "<span class='series'>" + esc(o.series) + "</span>" : ""].filter(Boolean).join(" · ");
+  const who = o.preacher ? esc(o.preacher) : "<span class='guest'>To be announced</span>";
+  return `<tr class="occ${isNext ? " next" : ""}">
+    <td class="date">${fmt(d,{month:"short",day:"numeric"})}<small>${fmt(d,{weekday:"short"})}</small></td>
+    <td>${esc(o.service)}${isNext ? "<span class='pill'>Next</span>" : ""}${o.location ? "<small>" + esc(o.location) + "</small>" : ""}</td>
+    <td><div class="t">${title}</div>${sub ? "<small>" + sub + "</small>" : ""}</td>
+    <td class="preacher">${who}${o.guest ? " <span class='guest'>(guest)</span>" : ""}</td>
+  </tr>`;
+}
+
+function table(list, nextKey, holidays){
+  if (!list.length) return "";
+  let rows = "", week = null;
+  for (const o of list){
+    const w = weekStart(parse(o.date));
+    if (w !== week){
+      week = w;
+      const names = holidays.filter(h => weekStart(parse(h.date)) === w).map(h => esc(h.name));
+      rows += `<tr class="week"><td colspan="4">Week of ${fmt(parse(w),{month:"long",day:"numeric"})}${names.length ? "<span>" + names.join(" · ") + "</span>" : ""}</td></tr>`;
+    }
+    rows += occRow(o, o.key === nextKey);
+  }
+  return `<div class="table-wrap"><table>
+    <thead><tr><th>Date</th><th>Service</th><th>Sermon</th><th>Preacher</th></tr></thead>
+    <tbody>${rows}</tbody></table></div>`;
+}
+
+function render(data){
+  if (data.updated) document.getElementById("updated").textContent =
+    "Updated " + new Date(data.updated).toLocaleDateString(undefined, {year:"numeric", month:"long", day:"numeric"});
+  const today = iso(new Date());
+  const items = [...(data.items || [])].sort((a,b) => a.date.localeCompare(b.date) || (a.order||0) - (b.order||0));
+  items.forEach((o, i) => o.key = i);
+  const upcoming = items.filter(i => i.date >= today);
+  const past = items.filter(i => i.date < today).reverse();
+  const holidays = data.holidays || [];
+  const nextKey = upcoming.length ? upcoming[0].key : null;
+  let html = upcoming.length ? table(upcoming, nextKey, holidays) : '<div class="empty">No upcoming sermons are scheduled.</div>';
+  if (past.length){
+    html += `<details class="past"><summary>Past sermons (${past.length})</summary>${table(past, null, holidays)}</details>`;
+  }
+  document.getElementById("app").innerHTML = html;
+}
+
+fetch("schedule.json", {cache: "no-cache"})
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(render)
+  .catch(() => { document.getElementById("app").innerHTML = '<div class="empty">The schedule could not be loaded. Please try again later.</div>'; });
+</script>
+</body>
+</html>
