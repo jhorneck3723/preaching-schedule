@@ -1,1 +1,173 @@
-{"items":[],"holidays":[],"updated":"2026-10-09T00:00:00Z"}
+{
+  "holidays" : [
+
+  ],
+  "items" : [
+    {
+      "date" : "2026-10-11",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 2,
+      "passage" : "Exodus 13:17–14:31",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "Right Where You Need Him"
+    },
+    {
+      "date" : "2026-10-18",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 3,
+      "passage" : "Exodus 15:1–21",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "The Song of the Sea"
+    },
+    {
+      "date" : "2026-10-25",
+      "guest" : true,
+      "location" : "Redeemer Church",
+      "order" : 378,
+      "passage" : "",
+      "preacher" : "Alonso Ibarra",
+      "series" : "",
+      "service" : "Sunday AM",
+      "title" : ""
+    },
+    {
+      "date" : "2026-11-01",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 4,
+      "passage" : "Exodus 15:22–17:7",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "Exodus 15:22–17:7"
+    },
+    {
+      "date" : "2026-11-08",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 5,
+      "passage" : "Exodus 17:8–18:27",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "Exodus 17:8–18:27"
+    },
+    {
+      "date" : "2026-11-15",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 6,
+      "passage" : "Exodus 19",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "Exodus 19"
+    },
+    {
+      "date" : "2026-11-22",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 7,
+      "passage" : "Exodus 20:1–17",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "Exodus 20:1–17"
+    },
+    {
+      "date" : "2026-11-29",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 8,
+      "passage" : "Exodus 20:18–23:33",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "Exodus 20:18–23:33"
+    },
+    {
+      "date" : "2026-12-06",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 9,
+      "passage" : "Exodus 24:1–18",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "Exodus 24:1–18"
+    },
+    {
+      "date" : "2026-12-13",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 10,
+      "passage" : "Exodus 25:1–31:18",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "Exodus 25:1–31:18"
+    },
+    {
+      "date" : "2026-12-20",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 11,
+      "passage" : "Christmas",
+      "preacher" : "Jeremy Horneck",
+      "series" : "",
+      "service" : "Sunday AM",
+      "title" : "Christmas"
+    },
+    {
+      "date" : "2026-12-27",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 12,
+      "passage" : "Exodus 32",
+      "preacher" : "Evan Swonke",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "Exodus 32"
+    },
+    {
+      "date" : "2027-01-03",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 13,
+      "passage" : "Exodus 33",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "The Glorious Lord"
+    },
+    {
+      "date" : "2027-01-10",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 14,
+      "passage" : "Exodus 34",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "The Renewed Covenant"
+    },
+    {
+      "date" : "2027-01-17",
+      "guest" : false,
+      "location" : "Redeemer Church",
+      "order" : 15,
+      "passage" : "Exodus 35-40",
+      "preacher" : "Jeremy Horneck",
+      "series" : "Exodus",
+      "service" : "Sunday AM",
+      "title" : "The Glory Fills the House"
+    }
+  ],
+  "updated" : "2026-10-10T02:35:16Z"
+}
