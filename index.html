@@ -85,11 +85,10 @@ const weekStart = d => { const w = new Date(d); w.setDate(w.getDate() - w.getDay
 function occRow(o, isNext){
   const d = parse(o.date);
   const title = o.title ? esc(o.title) : "<span class='guest'>Title to be announced</span>";
-  const sub = [o.passage ? esc(o.passage) : "", o.series ? "<span class='series'>" + esc(o.series) + "</span>" : ""].filter(Boolean).join(" · ");
+  const sub = [o.passage ? esc(o.passage) : "", o.series ? "<span class='series'>" + esc(o.series) + "</span>" : "", o.location ? esc(o.location) : ""].filter(Boolean).join(" · ");
   const who = o.preacher ? esc(o.preacher) : "<span class='guest'>To be announced</span>";
   return `<tr class="occ${isNext ? " next" : ""}">
-    <td class="date">${fmt(d,{month:"short",day:"numeric"})}<small>${fmt(d,{weekday:"short"})}</small></td>
-    <td>${esc(o.service)}${isNext ? "<span class='pill'>Next</span>" : ""}${o.location ? "<small>" + esc(o.location) + "</small>" : ""}</td>
+    <td class="date">${fmt(d,{month:"short",day:"numeric"})}<small>${fmt(d,{weekday:"short"})}</small>${isNext ? "<span class='pill'>Next</span>" : ""}</td>
     <td><div class="t">${title}</div>${sub ? "<small>" + sub + "</small>" : ""}</td>
     <td class="preacher">${who}${o.guest ? " <span class='guest'>(guest)</span>" : ""}</td>
   </tr>`;
@@ -103,12 +102,12 @@ function table(list, nextKey, holidays){
     if (w !== week){
       week = w;
       const names = holidays.filter(h => weekStart(parse(h.date)) === w).map(h => esc(h.name));
-      rows += `<tr class="week"><td colspan="4">Week of ${fmt(parse(w),{month:"long",day:"numeric"})}${names.length ? "<span>" + names.join(" · ") + "</span>" : ""}</td></tr>`;
+      rows += `<tr class="week"><td colspan="3">Week of ${fmt(parse(w),{month:"long",day:"numeric"})}${names.length ? "<span>" + names.join(" · ") + "</span>" : ""}</td></tr>`;
     }
     rows += occRow(o, o.key === nextKey);
   }
   return `<div class="table-wrap"><table>
-    <thead><tr><th>Date</th><th>Service</th><th>Sermon</th><th>Preacher</th></tr></thead>
+    <thead><tr><th>Date</th><th>Sermon</th><th>Preacher</th></tr></thead>
     <tbody>${rows}</tbody></table></div>`;
 }
 
