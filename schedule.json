@@ -78,7 +78,7 @@
       "preacher" : "Jeremy Horneck",
       "series" : "Exodus",
       "service" : "Sunday AM",
-      "title" : "Exodus 20:1–17"
+      "title" : "Rules for the Redeemed"
     },
     {
       "date" : "2026-11-29",
@@ -89,7 +89,7 @@
       "preacher" : "Jeremy Horneck",
       "series" : "Exodus",
       "service" : "Sunday AM",
-      "title" : "Exodus 20:18–23:33"
+      "title" : "The Book of the Covenant"
     },
     {
       "date" : "2026-12-06",
@@ -100,7 +100,7 @@
       "preacher" : "Jeremy Horneck",
       "series" : "Exodus",
       "service" : "Sunday AM",
-      "title" : "Exodus 24:1–18"
+      "title" : "Covenant Ratified in Blood"
     },
     {
       "date" : "2026-12-13",
@@ -111,7 +111,7 @@
       "preacher" : "Jeremy Horneck",
       "series" : "Exodus",
       "service" : "Sunday AM",
-      "title" : "Exodus 25:1–31:18"
+      "title" : "The Tabernacle Blueprint"
     },
     {
       "date" : "2026-12-20",
@@ -133,7 +133,7 @@
       "preacher" : "Evan Swonke",
       "series" : "Exodus",
       "service" : "Sunday AM",
-      "title" : "Exodus 32"
+      "title" : "The Golden Calf"
     },
     {
       "date" : "2027-01-03",
@@ -169,5 +169,5 @@
       "title" : "The Glory Fills the House"
     }
   ],
-  "updated" : "2026-10-10T02:42:43Z"
+  "updated" : "2026-10-10T02:43:47Z"
 }
