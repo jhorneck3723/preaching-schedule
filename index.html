@@ -89,7 +89,7 @@ const weekStart = d => { const w = new Date(d); w.setDate(w.getDate() - w.getDay
 function occRow(o, isNext){
   const d = parse(o.date);
   const title = o.title ? esc(o.title) : "<span class='guest'>Title to be announced</span>";
-  const sub = [o.passage ? esc(o.passage) : "", o.series ? "<span class='series'>" + esc(o.series) + "</span>" : "", o.location ? esc(o.location) : ""].filter(Boolean).join(" · ");
+  const sub = [o.passage ? esc(o.passage) : "", o.series ? "<span class='series'>" + esc(o.series) + "</span>" : ""].filter(Boolean).join(" · ");
   const who = o.preacher ? esc(o.preacher) : "<span class='guest'>To be announced</span>";
   return `<tr class="occ${isNext ? " next" : ""}">
     <td class="date">${fmt(d,{month:"short",day:"numeric"})}<small>${fmt(d,{weekday:"short"})}</small>${isNext ? "<span class='pill'>Next</span>" : ""}</td>
