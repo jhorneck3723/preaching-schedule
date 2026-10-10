@@ -64,7 +64,7 @@
       "location" : "Redeemer Church",
       "order" : 6,
       "passage" : "Exodus 19",
-      "preacher" : "Jeremy Horneck",
+      "preacher" : "",
       "series" : "Exodus",
       "service" : "Sunday AM",
       "title" : "The Mountain That Could Not Be Touched"
@@ -86,7 +86,7 @@
       "location" : "Redeemer Church",
       "order" : 8,
       "passage" : "Exodus 20:18–23:33",
-      "preacher" : "Jeremy Horneck",
+      "preacher" : "",
       "series" : "Exodus",
       "service" : "Sunday AM",
       "title" : "The Book of the Covenant"
@@ -108,7 +108,7 @@
       "location" : "Redeemer Church",
       "order" : 10,
       "passage" : "Exodus 25:1–31:18",
-      "preacher" : "Jeremy Horneck",
+      "preacher" : "",
       "series" : "Exodus",
       "service" : "Sunday AM",
       "title" : "The Tabernacle Blueprint"
@@ -169,5 +169,5 @@
       "title" : "The Glory Fills the House"
     }
   ],
-  "updated" : "2026-10-10T02:43:47Z"
+  "updated" : "2026-10-10T02:45:42Z"
 }
